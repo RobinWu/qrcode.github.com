@@ -440,6 +440,5 @@ Small Device Styles
 }
 .online_try a {
   display: block;
-  padding: 10px 20px;
-  width: 140px;
+  width: 180px;
 }
