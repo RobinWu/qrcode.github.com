@@ -429,3 +429,17 @@ Small Device Styles
   }
 
 }
+
+.online_try {
+  font-size: 24px;
+  margin: 10px 0;
+  font-weight: 700;
+  color:#222222;
+  font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+  letter-spacing: -1px;
+}
+.online_try a {
+  display: block;
+  padding: 10px 20px;
+  width: 140px;
+}
