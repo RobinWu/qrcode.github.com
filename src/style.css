@@ -1,0 +1,78 @@
+body {
+    font: 12px/20px Arial, sans-serif;
+}
+p, ul {
+    margin: 0;
+    padding: 0;
+}
+p {
+    margin-bottom: 20px;
+}
+#nav {
+    left: 20px;
+    list-style: none;
+    position: fixed;
+    top: 20px;
+}
+#nav li {
+    margin-bottom: 2px;
+}
+#nav a {
+    color: #666;
+    display: block;
+    font-size: 14px;
+    padding: 5px 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#nav a:hover {
+    background: #ccc;
+}
+#nav .current a {
+    background: #909090;
+    color: white;
+}
+.current {
+    background: red;
+}
+#container {
+    margin: 0 auto;
+    width: 800px;
+}
+.section {
+    min-height: 280px;
+}
+.section p:last-child {
+    margin-bottom: 0;
+}
+.section h1 {
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.section div.image {
+    float: right;
+}
+.section .form p label {
+    display: inline-block;
+    width: 90px;
+}
+.section .form p.textarea label {
+    vertical-align: top;
+}
+.section p input {
+    border: 1px solid #ccc;
+    width: 280px;
+    height: 30px;
+}
+
+.section p textarea {
+    border: 1px solid #ccc;
+    width: 280px;
+    height: 60px;
+}
+.section .build_button {
+    margin-left: 300px;
+    padding: 5px;
+}
+
