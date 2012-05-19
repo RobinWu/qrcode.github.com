@@ -1,0 +1,80 @@
+<!--
+/*************************************************************
+ * This script is developed by Arturs Sosins aka ar2rsawseen, http://webcodingeasy.com
+ * Feel free to distribute and modify code, but keep reference to its creator
+ *
+ * QR code class can be used to generate QR Code images using Google Chart API.
+ *
+ * For more information, examples and online documentation visit: 
+ * http://webcodingeasy.com/JS-classes/Generate-QR-codes-using-javascript
+**************************************************************/
+-->
+<html>
+<head>
+</head>
+<body>
+<p>Simple text</p>
+<div id='text_div'></div>
+<p>Link</p>
+<div id='link_div'></div>
+<p>Bookmark</p>
+<div id='bookmark_div'></div>
+<p>SMS</p>
+<div id='sms_div'></div>
+<p>Phone number</p>
+<div id='phone_number_div'></div>
+<p>Contact info</p>
+<div id='contact_info_div'></div>
+<p>Email</p>
+<div id='email_div'></div>
+<p>Geolocation</p>
+<div id='geo_div'></div>
+<p>Wifi network</p>
+<div id='wifi_div'></div>
+<script src="./qrcode.packed.js" type="text/javascript"></script>
+<script>
+var qr = new qrcode({
+		/***************************************
+		* Size of QRcode in pixels
+		* As QRcode is a square, only one value is needed
+		****************************************/
+		size: 150,
+		/***************************************
+		* Error correction level for damaged or misinterpretted codes
+		* Lower - more data stored, but less errors could be corrected
+		* High - less data can be stord, more information can be recovered
+		* Possible types of error collection:
+		* L - [Default] Allows recovery of up to 7% data loss
+		* M - Allows recovery of up to 15% data loss
+		* Q - Allows recovery of up to 25% data loss
+		* H - Allows recovery of up to 30% data loss
+		****************************************/
+		ec_level: "L",
+		/***************************************
+		* Margin - white space around QRcode in
+		* QRcode columns and rows, no pixels
+		****************************************/
+		margin: 1
+	}
+);
+//id of container, text string
+qr.text("text_div", "Some text");
+//id of container, link
+qr.link("link_div", "http://webcodingeasy.com/");
+//id of container, title of bookmark, link
+qr.bookmark("bookmark_div", "WebcodingEasy", "http://webcodingeasy.com/");
+//id of container, phone number, sms text
+qr.sms("sms_div", "12345678", "Some text");
+//id of container, phone number
+qr.phone_number("phone_number_div", "12345678");
+//id of container, firstname and lastname, address, phone, email
+qr.contact_info("contact_info_div", "Arturs Sosins", "Stadiona street 15", "12345678", "ar2rsawseen@yahoo.com");
+//id of container, email address, subject, email message
+qr.email("email_div", "ar2rsawseen@yahoo.com", "Email subject", "Email message");
+//id of container, latitude, longitude, height from earth
+qr.geo("geo_div", "46.404723", "-105.838165", "15");
+//id of container, authentication type, ssid, password
+qr.wifi("wifi_div", "WPA", "Network name", "net_password");
+</script>
+</body>
+</html>

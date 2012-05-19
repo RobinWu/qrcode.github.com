@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>在线生成二维码</title>
+        <link href="src/style.css" media="all" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="src/jquery.js"></script>
+        <script type="text/javascript" src="src/jquery.scrollTo.js"></script>
+        <script type="text/javascript" src="src/jquery.nav.min.js"></script>
+        <script type="text/javascript" src="src/qrcode.js"></script>
+        <script>
+            var QrBuild;
+
+            function build_qrcode(type) {
+                var image_div_id = type + '_div';
+                $('#' + image_div_id).html('');
+
+                switch(type) {
+                    case 'text':
+                        QrBuild.text("text_div", $('#text-content').val());
+                        break;
+                    case 'link':
+                        QrBuild.text("link_div", $('#link-content').val());
+                        break;
+                    case 'sms':
+                        QrBuild.sms("sms_div", $('#sms-no').val(), $('#sms-content').val());
+                        break;
+                    case 'phone-number':
+                        QrBuild.phone_number("phone_number_div", $('#phone-content').val());
+                        break;
+                    case 'contact-info':
+                        QrBuild.contact_info("contact_info_div", $('#contact-name').val(), $('#contact-addr').val(), $('#contact-tel').val(), $('#contact-email').val());
+                        break;
+                    case 'email':
+                        QrBuild.email("email_div", $('#email-to').val(), $('#email-subject').val(), $('#email-content').val());
+                        break;
+                    case 'wifi':
+                        QrBuild.wifi("wifi_div", $('#wifi-type').val(), $('#wifi-ssid').val(), $('#wifi-pwd').val());
+                        break;
+                };
+            };
+
+            $(document).ready(function() {
+                $('#nav').onePageNav({ filter: ':not(.external)', scrollThreshold: 0.25 });
+                QrBuild = new qrcode({
+                  size: 200, //图片像素
+                  ec_level: "L", // 错误纠正等级 L - 修复率为 7% M - 修复率为 15% Q - 修复率为 25% H - 修复率为 30%
+                  margin: 1
+                });
+                $('.build_button').click();
+            });
+        </script>
+    </head>
+
+    <body>
+        <ul id="nav">
+            <li class="current"><a href="#section-text">文本</a></li>
+            <li><a href="#section-link">网址</a></li>
+            <li><a href="#section-sms">短信</a></li>
+            <li><a href="#section-phone-number">电话号码</a></li>
+            <li><a href="#section-contact-info">名片</a></li>
+            <li><a href="#section-email">邮件</a></li>
+            <li><a href="#section-wifi">Wifi</a></li>
+        </ul>
+
+        <div id="container">
+            <div class="section" id="section-text">
+                <h1>文本</h1>
+                <div id='text_div' class="image" ></div>
+                <div class="form">
+                    <p class="textarea">
+                        <label>正文内容:</label>
+                        <textarea id="text-content">二维码文本测试</textarea>
+                    </p>
+                    <input type="button" value="生成二维码" onclick="build_qrcode('text')" class="build_button" />
+                </div>
+            </div>
+
+            <div class="section" id="section-link">
+                <h1>网址</h1>
+                <div id='link_div' class="image"></div>
+                <div class="form">
+                    <p>
+                        <label>网址:</label>
+                        <input type="text" id="link-content" value="http://www.baidu.com" />
+                    </p>
+                    <input type="button" value="生成二维码" onclick="build_qrcode('link')" class="build_button" />
+                </div>
+            </div>
+
+            <div class="section" id="section-sms">
+                <h1>短信</h1>
+                <div id='sms_div' class="image"></div>
+                <div class="form">
+                    <p>
+                        <label>手机号码:</label>
+                        <input type="text" id="sms-no" value="10086" />
+                    </p>
+                    <p>
+                        <label>网址:</label>
+                        <input type="text" id="sms-content" value="中国移动通信" />
+                    </p>
+                    <input type="button" value="生成二维码" onclick="build_qrcode('sms')" class="build_button" />
+                </div>
+            </div>
+
+            <div class="section" id="section-phone-number">
+                <h1>电话号码</h1>
+                <div id='phone_number_div' class="image"></div>
+                <div class="form">
+                    <p>
+                        <label>电话号码:</label>
+                        <input type="text" id="phone-content" value="10086" />
+                    </p>
+                    <input type="button" value="生成二维码" onclick="build_qrcode('phone-number')" class="build_button" />
+                </div>
+            </div>
+
+            <div class="section" id="section-contact-info">
+                <h1>名片</h1>
+                <div id='contact_info_div' class="image"></div>
+                <div class="form">
+                    <p>
+                        <label>姓名:</label>
+                        <input type="text" id="contact-name" value="中国移动" />
+                    </p>
+                    <p>
+                        <label>地址:</label>
+                        <input type="text" id="contact-addr" value="10086" />
+                    </p>
+                    <p>
+                        <label>电话号码:</label>
+                        <input type="text" id="contact-tel" value="10086" />
+                    </p>
+                    <p>
+                        <label>邮件:</label>
+                        <input type="text" id="contact-email" value="10086@139.com" />
+                    </p>
+                    <input type="button" value="生成二维码" onclick="build_qrcode('contact-info')" class="build_button" />
+                </div>
+            </div>
+
+            <div class="section" id="section-email">
+                <h1>邮件</h1>
+                <div id='email_div' class="image"></div>
+                <div class="form">
+                    <p>
+                        <label>接收邮箱:</label>
+                        <input type="text" id="email-to" value="10086@139.com" />
+                    </p>
+                    <p>
+                        <label>标题:</label>
+                        <input type="text" id="email-subject" value="二维码邮件测试" />
+                    </p>
+                    <p class="textarea">
+                        <label>内容:</label>
+                        <textarea id="email-content">二维码邮件测试内容</textarea>
+                    </p>
+                    <input type="button" value="生成二维码" onclick="build_qrcode('email')" class="build_button" />
+                </div>
+            </div>
+
+            <div class="section" id="section-wifi">
+                <h1>Wifi</h1>
+                <div id='wifi_div' class="image"></div>
+                <div class="form">
+                    <p>
+                        <label>SSID/无线帐号:</label>
+                        <input type="text" id="wifi-ssid" value="10086" />
+                    </p>
+                    <p>
+                        <label>密码:</label>
+                        <input type="text" id="wifi-pwd" value="10086" />
+                    </p>
+                    <p>
+                        <label>加密类型:</label>
+                        <select id="wifi-type">
+                            <option value="WPA/WPA2" selected="">WPA/WPA2</option>
+                            <option value="WEP">WEP</option>
+                            <option value="">无加密</option>
+                        </select>
+                    </p>
+                    <input type="button" value="生成二维码" onclick="build_qrcode('wifi')" class="build_button" />
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
